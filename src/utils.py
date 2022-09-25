@@ -5,7 +5,6 @@
 from subprocess import check_output
 import random
 import csv
-import os
 
 
 def random_item_from_list(list):

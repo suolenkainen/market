@@ -1,5 +1,5 @@
-"id","name","primary","secondary"
-0,"farm",0,
-1,"sheepfarm",1,
-2,"lumbermill",2,
-3,"mine",3,4
+"id","name","product","price","speed"
+0,"farm",0,2.00,4
+1,"sheepfarm",1,2.00,4
+2,"lumbermill",2,2.00,4
+3,"mine",3,2.00,4

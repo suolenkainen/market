@@ -5,7 +5,7 @@
 
 import unittest
 import utils
-import csv, os
+import os
 
 PATH = os.path.abspath(os.getcwd())
 
