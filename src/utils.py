@@ -17,6 +17,7 @@ def csv_to_dict_converter(filename):
         file_data=csv.reader(csvfile)
         headers=next(file_data)
         _result_dict = [dict(zip(headers,i)) for i in file_data]
+    csvfile.close()
     return _result_dict
     
 
