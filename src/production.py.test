@@ -49,6 +49,50 @@ class ProductionTests(unittest.TestCase):
         self.assertEqual(_result_producer, result_producer)
         self.assertEqual(_result_additional_storage, result_storage)
 
+
+    def test_04_adjust_product_prices_same_price(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_purchases = [{'producer': 0, 'product': 0, 'price': 10.0}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.2, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+
+        _result_producer = production.adjust_product_prices(test_producer, test_purchases)
         
+        self.assertEqual(_result_producer, result_producer)
+
+
+    def test_05_adjust_product_prices_no_sale(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_purchases = []
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 9.5, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+
+        _result_producer = production.adjust_product_prices(test_producer, test_purchases)
+        
+        self.assertEqual(_result_producer, result_producer)
+
+
+    def test_06_adjust_product_prices_higher_purchase(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_purchases = [{'producer': 0, 'product': 0, 'price': 10.5}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.8, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+
+        _result_producer = production.adjust_product_prices(test_producer, test_purchases)
+        
+        self.assertEqual(_result_producer, result_producer)
+
+
+    def test_07_adjust_product_prices_multiple(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 10.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_purchases = [{'producer': 0, 'product': 0, 'price': 10}, {'producer': 0, 'product': 0, 'price': 10}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 11.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+
+        _result_producer = production.adjust_product_prices(test_producer, test_purchases)
+        
+        self.assertEqual(_result_producer, result_producer)
+
+
 if __name__ == '__main__':
     unittest.main()

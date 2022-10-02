@@ -26,6 +26,19 @@ def generate_products_for_producers(producer, storage):
     return producer, storage
 
 
+def adjust_product_prices(producer, purchases):
+    price_adjusting = 0.05
+
+    if purchases == []:
+        producer["price"] = round(producer["price"] / (price_adjusting + 1), 1)
+    elif len(purchases) == 1:
+        producer["price"] = round(purchases[0]["price"] * (price_adjusting / 2 + 1), 1)
+    else:
+        producer["price"] = round(purchases[0]["price"] * (price_adjusting * len(purchases) + 1), 1)
+
+    return producer
+
+
 if __name__ == '__main__':
 
     check_output("python .\\src\\production.py.test -v", shell=True)

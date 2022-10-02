@@ -79,6 +79,11 @@ def generate_additional_transactions(purchase, sales, len_purch, len_sales):
     return purchase, new_purchase, sales, new_sales
 
 
+def crete_list_of_orders(orders):
+    # TODO: Create a list of purchases and sales to be sent to producer and a person
+    # 
+    return {'producer': 0, 'product': 0, 'price': 10}
+
 if __name__ == '__main__':
     # _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
     # _test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
