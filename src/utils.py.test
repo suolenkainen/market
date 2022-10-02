@@ -12,20 +12,10 @@ PATH = os.path.abspath(os.getcwd())
 
 class UtilsTests(unittest.TestCase):
 
-    # Testing random list picker
-    def test_1_random_item_from_list(self):
-        _test_data_list = [0,1,2,3]
-        _test_result_list = [1,2,3,4]
-
-        _result1 = utils.random_item_from_list(_test_data_list)
-
-        self.assertIn(_result1, _test_result_list)
-
-
     # Testing csv converter
-    def test_2_csv_to_dict_converter(self):
-        _test_data_text = "id,name,wealth\n0,Alpha,1"
-        _test_result_dict = [{'id': '0', 'name': 'Alpha', 'wealth': '1'}]
+    def test_1_csv_to_dict_converter(self):
+        _test_data_text = "id,name,wealth,active\n0,Alpha,1,True"
+        _test_result_dict = [{'id': 0, 'name': 'Alpha', 'wealth': 1, 'active': True}]
         _filename = 'csv_to_dict.csv'
 
         _file = open(_filename, "w")
