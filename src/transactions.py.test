@@ -7,20 +7,35 @@ import unittest
 import transactions
 import os
 
-PATH = os.path.abspath(os.getcwd())
+# PATH = os.path.abspath(os.getcwd())
 
 
 class UtilsTests(unittest.TestCase):
 
-    # Testing csv converter    
+    # Testing combination of purchase and sell  
     def test_1_combine_purchase_and_sell_orders(self):
-        _test_purchase_dict = [{'id': '0', 'product': '0', 'purchaser': '0', 'amount': '1', 'priceone': '10'}]
-        _test_sales_dict = [{'id': '0', 'product': '0', 'seller': '0', 'amount': '1', 'priceone': '10'}]
+        _test_purchase_dict = [{'id': '0', 'product': '0', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
+        _test_sales_dict = [{'id': '0', 'product': '0', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
 
-        _result_dict = transactions.combine_purchase_and_sell_orders(_test_purchase_dict, _test_sales_dict)
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(_test_purchase_dict, _test_sales_dict)
         
-        self.assertEqual(_result_dict, [])
+        self.assertEqual(_result_matches, [['0','0']])
+        self.assertEqual(_result_purchase_dict, _test_purchase_dict)
+        self.assertEqual(_result_sales_dict, _test_sales_dict)
 
+
+    # Testing combination of purchase and sell  
+    def test_2_combine_purchase_and_sell_orders_double_data(self):
+        _test_purchase_dict = [{'id': '0', 'product': '0', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}, 
+                               {'id': '1', 'product': '2', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
+        _test_sales_dict = [{'id': '0', 'product': '0', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}, 
+                            {'id': '1', 'product': '2', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
+
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(_test_purchase_dict, _test_sales_dict)
+        
+        self.assertEqual(_result_matches, [['0','0'], ['1','1']])
+        self.assertEqual(_result_purchase_dict, _test_purchase_dict)
+        self.assertEqual(_result_sales_dict, _test_sales_dict)
 
 if __name__ == '__main__':
     unittest.main()
