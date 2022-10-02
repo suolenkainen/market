@@ -1,2 +1,2 @@
-"id","product","seller","amount","priceone"
-0,0,0,1,10
+"id","product","seller","amount","priceone","active"
+0,0,0,1,10,True
