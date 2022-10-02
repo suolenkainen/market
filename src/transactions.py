@@ -79,10 +79,24 @@ def generate_additional_transactions(purchase, sales, len_purch, len_sales):
     return purchase, new_purchase, sales, new_sales
 
 
-def crete_list_of_orders(orders):
-    # TODO: Create a list of purchases and sales to be sent to producer and a person
-    # 
-    return {'producer': 0, 'product': 0, 'price': 10}
+def crete_list_of_orders(purchase_orders, sales_orders, matches):
+    producer_transactions = []
+    people_transactions = []
+    
+    for _match in matches:
+        for _purchase_order in purchase_orders:
+            if _purchase_order["id"] == _match[0]:
+                _producer_transaction = {'producer': _purchase_order["id"], 'product': _purchase_order["product"], 
+                                        'price': _purchase_order["priceone"]}
+                producer_transactions.append(_producer_transaction)
+                break
+        for _sales_order in sales_orders:
+            if _sales_order["id"] == _match[1]:
+                _person_transaction = {'person': _purchase_order["id"], 'product': _purchase_order["product"], 'amount': _sales_order["amount"], 'price': _purchase_order["priceone"]}
+                people_transactions.append(_person_transaction)
+                break
+
+    return producer_transactions, people_transactions
 
 if __name__ == '__main__':
     # _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
