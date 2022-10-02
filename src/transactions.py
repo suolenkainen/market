@@ -33,7 +33,7 @@ def combine_purchase_and_sell_orders(purchase_dict, sales_dict):
                     _sales["active"] = False
                     matching_orders.append([_purchase["id"], _sales["id"]])
                 else:
-                    _purchase, _new_purchase, _sales, _new_sales = generate_additional_transactions(_purchase, _sales)
+                    _purchase, _new_purchase, _sales, _new_sales = generate_additional_transactions(_purchase, _sales, len(purchase_dict), len(sales_dict))
                     if _new_purchase != {}:
                         purchase_dict.append(_new_purchase)
                     if _new_sales != {}:
@@ -59,7 +59,7 @@ def check_prices(purchase, sales):
     return match, purchase, sales
 
 
-def generate_additional_transactions(purchase, sales):
+def generate_additional_transactions(purchase, sales, len_purch, len_sales):
     new_purchase = {}
     new_sales = {}
 
@@ -67,12 +67,14 @@ def generate_additional_transactions(purchase, sales):
         _diff = purchase["amount"] - sales["amount"]
         new_purchase = copy(purchase)
         new_purchase["amount"] = _diff
+        new_purchase["id"] = len_purch
         purchase["amount"] -= _diff
 
     if purchase["amount"] < sales["amount"]:
         _diff = sales["amount"] - purchase["amount"]
         new_sales = copy(sales)
         new_sales["amount"] = _diff
+        new_sales["id"] = len_sales
         sales["amount"] -= _diff
 
     purchase["active"] = False

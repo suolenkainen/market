@@ -83,7 +83,7 @@ class TransactionTests(unittest.TestCase):
         test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
 
         result_matches = [[0,0]]
-        result_purchase_dict =  [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}, {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        result_purchase_dict =  [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}, {'id': 1, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
         result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}]
 
         _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
@@ -141,9 +141,9 @@ class TransactionTests(unittest.TestCase):
 
         result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}
         result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}
-        _result_new_purchase = {'id': 0, 'product': 0, 'seller': 0, 'amount': 2, 'priceone': 10, "active": True}
+        _result_new_purchase = {'id': 1, 'product': 0, 'seller': 0, 'amount': 2, 'priceone': 10, "active": True}
 
-        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales)
+        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales, 1, 1)
         
         self.assertEqual(_result_purchase, result_purchase)
         self.assertEqual(_result_new_purchase, _result_new_purchase)
@@ -157,9 +157,9 @@ class TransactionTests(unittest.TestCase):
 
         result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}
         result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}
-        _result_new_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 3, 'priceone': 10, "active": True}
+        _result_new_sales = {'id': 1, 'product': 0, 'seller': 0, 'amount': 3, 'priceone': 10, "active": True}
 
-        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales)
+        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales, 1, 1)
         
         self.assertEqual(_result_purchase, result_purchase)
         self.assertEqual(_result_new_purchase, {})
