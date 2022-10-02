@@ -19,3 +19,5 @@ PEOPLE_PRODUCT = utils.csv_to_dict_converter(people_product_path)
 PRODUCT = utils.csv_to_dict_converter(products_path)
 PRODUCERS = utils.csv_to_dict_converter(producers_path)
 STORAGE = utils.csv_to_dict_converter(storage_path)
+
+print()

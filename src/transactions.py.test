@@ -10,32 +10,162 @@ import os
 # PATH = os.path.abspath(os.getcwd())
 
 
-class UtilsTests(unittest.TestCase):
+class TransactionTests(unittest.TestCase):
 
-    # Testing combination of purchase and sell  
-    def test_1_combine_purchase_and_sell_orders(self):
-        _test_purchase_dict = [{'id': '0', 'product': '0', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
-        _test_sales_dict = [{'id': '0', 'product': '0', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
+    # Testing combination of purchase and sell
 
-        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(_test_purchase_dict, _test_sales_dict)
+    def test_01_combine_purchase_and_sell_orders(self):
+        test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
         
-        self.assertEqual(_result_matches, [['0','0']])
-        self.assertEqual(_result_purchase_dict, _test_purchase_dict)
-        self.assertEqual(_result_sales_dict, _test_sales_dict)
+        result_matches = [[0,0]]
+        result_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}]
+        result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}]
 
-
-    # Testing combination of purchase and sell  
-    def test_2_combine_purchase_and_sell_orders_double_data(self):
-        _test_purchase_dict = [{'id': '0', 'product': '0', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}, 
-                               {'id': '1', 'product': '2', 'purchaser': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
-        _test_sales_dict = [{'id': '0', 'product': '0', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}, 
-                            {'id': '1', 'product': '2', 'seller': '0', 'amount': '1', 'priceone': '10', "active": "True"}]
-
-        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(_test_purchase_dict, _test_sales_dict)
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
         
-        self.assertEqual(_result_matches, [['0','0'], ['1','1']])
-        self.assertEqual(_result_purchase_dict, _test_purchase_dict)
-        self.assertEqual(_result_sales_dict, _test_sales_dict)
+        self.assertEqual(_result_matches, result_matches)
+        self.assertEqual(_result_purchase_dict, result_purchase_dict)
+        self.assertEqual(_result_sales_dict, result_sales_dict)
+
+
+    def test_02_combine_purchase_and_sell_orders_double_data(self):
+        test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}, 
+                               {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}, 
+                            {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        
+        result_matches = [[0,0], [1,1]]
+        result_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}, 
+                               {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}]
+        result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}, 
+                            {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}]
+
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
+        
+        self.assertEqual(_result_matches, result_matches)
+        self.assertEqual(_result_purchase_dict, result_purchase_dict)
+        self.assertEqual(_result_sales_dict, result_sales_dict)
+
+
+    def test_03_orders_price_differs(self):
+        test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}]
+
+        result_matches = [[0,0]]
+        result_purchase_dict =  [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": False}]
+        result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": False}]
+
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
+        
+        self.assertEqual(_result_matches, result_matches)
+        self.assertEqual(_result_purchase_dict, result_purchase_dict)
+        self.assertEqual(_result_sales_dict, result_sales_dict)
+
+
+    def test_04_orders_price_differs_by_much(self):
+        test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 13, "active": True}]
+        
+        result_matches = []
+        result_purchase_dict =  [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 13, "active": True}]
+
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
+        
+        self.assertEqual(_result_matches, result_matches)
+        self.assertEqual(_result_purchase_dict, result_purchase_dict)
+        self.assertEqual(_result_sales_dict, result_sales_dict)
+
+
+    def test_05_order_amounts_differ(self):
+        test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 2, 'priceone': 10, "active": True}]
+        test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
+
+        result_matches = [[0,0]]
+        result_purchase_dict =  [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}, {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+        result_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}]
+
+        _result_matches, _result_purchase_dict, _result_sales_dict = transactions.combine_purchase_and_sell_orders(test_purchase_dict, test_sales_dict)
+        
+        self.assertEqual(_result_matches, result_matches)
+        self.assertEqual(_result_purchase_dict, result_purchase_dict)
+        self.assertEqual(_result_sales_dict, result_sales_dict)
+
+
+    def test_06_check_prices_equal(self):
+        test_purchase = {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}
+        test_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}
+
+        result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}
+        result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}
+
+        _match, _result_purchase, _result_sales = transactions.check_prices(test_purchase, test_sales)
+        
+        self.assertEqual(_match, True)
+        self.assertEqual(_result_purchase, result_purchase)
+        self.assertEqual(_result_sales, result_sales)
+
+
+    def test_07_check_prices_in_margin(self):
+        test_purchase = {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}
+        test_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}
+
+        result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}
+        result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}
+
+        _match, _result_purchase, _result_sales = transactions.check_prices(test_purchase, test_sales)
+        
+        self.assertEqual(_match, True)
+        self.assertEqual(_result_purchase, result_purchase)
+        self.assertEqual(_result_sales, result_sales)
+
+
+    def test_08_check_prices_asking_prices_over_margin(self):
+        test_purchase = {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 13, "active": True}
+        test_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}
+
+        result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 13, "active": True}
+        result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}
+
+        _match, _result_purchase, _result_sales = transactions.check_prices(test_purchase, test_sales)
+        
+        self.assertEqual(_match, False)
+        self.assertEqual(_result_purchase, result_purchase)
+        self.assertEqual(_result_sales, result_sales)
+
+
+    def test_09_generate_additional_transactions_new_purchase(self):
+        test_purchase = {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 3, 'priceone': 10, "active": True}
+        test_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}
+
+        result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}
+        result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}
+        _result_new_purchase = {'id': 0, 'product': 0, 'seller': 0, 'amount': 2, 'priceone': 10, "active": True}
+
+        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales)
+        
+        self.assertEqual(_result_purchase, result_purchase)
+        self.assertEqual(_result_new_purchase, _result_new_purchase)
+        self.assertEqual(_result_sales, result_sales)
+        self.assertEqual(_result_new_sales, {})
+
+    
+    def test_10_generate_additional_transactions_new_sales(self):
+        test_purchase = {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}
+        test_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 4, 'priceone': 10, "active": True}
+
+        result_purchase =  {'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": False}
+        result_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 10, "active": False}
+        _result_new_sales = {'id': 0, 'product': 0, 'seller': 0, 'amount': 3, 'priceone': 10, "active": True}
+
+        _result_purchase, _result_new_purchase, _result_sales, _result_new_sales = transactions.generate_additional_transactions(test_purchase, test_sales)
+        
+        self.assertEqual(_result_purchase, result_purchase)
+        self.assertEqual(_result_new_purchase, {})
+        self.assertEqual(_result_sales, result_sales)
+        self.assertEqual(_result_new_sales, _result_new_sales)
+
 
 if __name__ == '__main__':
     unittest.main()

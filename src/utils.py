@@ -18,8 +18,11 @@ def csv_to_dict_converter(filename):
         for key, value in _dict.items():
             
             # Converts integers to proper form
-            reg = r"[0-9]"
-            if regmatch(reg, value):
+            regint = r"[0-9]"
+            regid = r"id[a-z]*"
+            if regmatch(regid, key):
+                _dict[key] = int(value)
+            elif regmatch(regint, value):
                 _dict[key] = float(value)
 
             # Converts boolean to proper form

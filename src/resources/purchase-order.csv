@@ -1,2 +1,2 @@
-"id","product","purchaser","amount","priceone","active"
+"id","idproduct","idpurchaser","amount","priceone","active"
 0,0,0,1,10,True
