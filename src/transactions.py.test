@@ -5,9 +5,6 @@
 
 import unittest
 import transactions
-import os
-
-# PATH = os.path.abspath(os.getcwd())
 
 
 class TransactionTests(unittest.TestCase):

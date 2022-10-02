@@ -2,12 +2,8 @@
 # Author: Pekka Marjamäki - Suolenkainen
 # https://github.com/suolenkainen/market
 
-import os
 from subprocess import check_output
 from copy import copy
-
-
-PATH = os.path.abspath(os.getcwd())
 
 
 def combine_purchase_and_sell_orders(purchase_dict, sales_dict):
@@ -84,8 +80,8 @@ def generate_additional_transactions(purchase, sales, len_purch, len_sales):
 
 
 if __name__ == '__main__':
-    _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
-    _test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
-    combine_purchase_and_sell_orders(_test_purchase_dict,_test_sales_dict)
+    # _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+    # _test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
+    # combine_purchase_and_sell_orders(_test_purchase_dict,_test_sales_dict)
 
     check_output("python .\\src\\transactions.py.test -v", shell=True)

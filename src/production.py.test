@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+# Author: Pekka Marjamäki - Suolenkainen
+# https://github.com/suolenkainen/market
+
+
+import unittest
+import production
+
+class ProductionTests(unittest.TestCase):
+
+    # Testing combination of purchase and sell
+
+    def test_01_generate_products_for_producers(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_storage = [{'idproducer': 0, 'idproduct': 0, 'amount': 30.0}, {'idproducer': 1, 'idproduct': 1, 'amount': 23.0}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        result_storage = [{'idproducer': 0, 'idproduct': 0, 'amount': 34.0}, {'idproducer': 1, 'idproduct': 1, 'amount': 23.0}]
+
+        _result_producer, _result_additional_storage = production.generate_products_for_producers(test_producer, test_storage)
+        
+        self.assertEqual(_result_producer, result_producer)
+        self.assertEqual(_result_additional_storage, result_storage)
+
+
+
+    def test_02_generate_products_for_producers_and_waste(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_storage = [{'idproducer': 0, 'idproduct': 0, 'amount': 50.0}, {'idproducer': 1, 'idproduct': 1, 'amount': 23.0}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 4.0}
+        result_storage = [{'idproducer': 0, 'idproduct': 0, 'amount': 50.0}, {'idproducer': 1, 'idproduct': 1, 'amount': 23.0}]
+
+        _result_producer, _result_additional_storage = production.generate_products_for_producers(test_producer, test_storage)
+        
+        self.assertEqual(_result_producer, result_producer)
+        self.assertEqual(_result_additional_storage, result_storage)
+
+
+    def test_03_generate_new_products_for_producers_into_storage(self):
+        test_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        test_storage = [{'idproducer': 1, 'idproduct': 1, 'amount': 23.0}]
+
+        result_producer = {'id': 0, 'name': 'farm', 'idproduct': 0, 'price': 2.0, 'speed': 4.0, 'max': 50.0, 'waste': 0.0}
+        result_storage = [{'idproducer': 1, 'idproduct': 1, 'amount': 23.0}, {'idproducer': 0, 'idproduct': 0, 'amount': 4.0}]
+
+        _result_producer, _result_additional_storage = production.generate_products_for_producers(test_producer, test_storage)
+        
+        self.assertEqual(_result_producer, result_producer)
+        self.assertEqual(_result_additional_storage, result_storage)
+
+        
+if __name__ == '__main__':
+    unittest.main()
