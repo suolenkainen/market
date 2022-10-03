@@ -12,7 +12,7 @@ def adjust_person_wealth(person, purchases):
             _price = round(_order["amount"] * _order["price"], 1)
             person["wealth"] = person["wealth"] - _price
             if person["wealth"] < 0:
-                person["wealth"] = 0
+                person["wealth"] = 0.0
                 person["active"] = False
 
     return person
