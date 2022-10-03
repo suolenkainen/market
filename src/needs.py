@@ -47,6 +47,23 @@ def people_consume_products_and_generate_needs(people_products, needs):
     return people_products, needs
 
 
+def adjust_need_prices(needs, purchase_orders):
+    price_adjusting = 0.05
+
+    for _need in needs:
+        for _order in purchase_orders:
+            if _need["priority"] != 0:
+                _need["price"] = round(_need["price"] * (1 + _need["priority"] * price_adjusting * 2), 1)
+                break
+            elif _need["idperson"] == _order["idpurchaser"] and _need["idproduct"] == _order["idproduct"] and _order["active"]:
+                _need["price"] = round(_order["priceone"] * (1 - price_adjusting / 2), 1)
+                break
+            elif _need["idperson"] == _order["idpurchaser"] and _need["idproduct"] == _order["idproduct"] and not _order["active"]:
+                _need["price"] = round(_need["price"] * (1 + price_adjusting), 1)
+                break
+
+    return needs
+
 if __name__ == '__main__':
 
     check_output("python .\\src\\needs.py.test -v", shell=True)

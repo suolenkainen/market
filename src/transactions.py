@@ -19,7 +19,7 @@ def combine_purchase_and_sell_orders(purchase_dict, sales_dict):
         for _sales in sales_dict:
             if _sales["active"] == False:
                 continue
-            if _purchase["product"] == _sales["product"]:
+            if _purchase["idproduct"] == _sales["idproduct"]:
                 match, _purchase, _sales = check_prices(_purchase, _sales)
                 if not match:
                     continue
@@ -86,13 +86,13 @@ def crete_list_of_orders(purchase_orders, sales_orders, matches):
     for _match in matches:
         for _purchase_order in purchase_orders:
             if _purchase_order["id"] == _match[0]:
-                _producer_transaction = {'producer': _purchase_order["id"], 'product': _purchase_order["product"], 
+                _producer_transaction = {'idproducer': _purchase_order["id"], 'idproduct': _purchase_order["idproduct"], 
                                         'price': _purchase_order["priceone"]}
                 producer_transactions.append(_producer_transaction)
                 break
         for _sales_order in sales_orders:
             if _sales_order["id"] == _match[1]:
-                _person_transaction = {'person': _purchase_order["id"], 'product': _purchase_order["product"], 'amount': _sales_order["amount"], 'price': _purchase_order["priceone"]}
+                _person_transaction = {'idperson': _purchase_order["id"], 'idproduct': _purchase_order["idproduct"], 'amount': _sales_order["amount"], 'price': _purchase_order["priceone"]}
                 people_transactions.append(_person_transaction)
                 break
 
@@ -100,8 +100,8 @@ def crete_list_of_orders(purchase_orders, sales_orders, matches):
 
 
 if __name__ == '__main__':
-    # _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
-    # _test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
+    # _test_purchase_dict = [{'id': 0, 'idproduct': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'idproduct': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
+    # _test_sales_dict = [{'id': 0, 'idproduct': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'idproduct': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]
     # combine_purchase_and_sell_orders(_test_purchase_dict,_test_sales_dict)
 
     check_output("python .\\src\\transactions.py.test -v", shell=True)
