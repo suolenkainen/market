@@ -15,6 +15,7 @@ producers_path = PATH + "\\src\\resources\\producers.csv"
 storage_path = PATH + "\\src\\resources\\storage.csv"
 purchase_path = PATH + "\\src\\resources\\purchase-order.csv"
 sales_path = PATH + "\\src\\resources\\sales-order.csv"
+market_path = PATH + "\\src\\resources\\market-prices.csv"
 
 PEOPLE = utils.csv_to_dict_converter(people_path)
 PEOPLE_ID = len(PEOPLE)
@@ -34,5 +35,7 @@ PURCHASE_ORDERS_ID = len(PURCHASE_ORDERS)
 
 SALES_ORDERS = utils.csv_to_dict_converter(sales_path)
 SALES_ORDERS_ID = len(SALES_ORDERS)
+
+MARKET_PRICES = utils.csv_to_dict_converter(market_path)
 
 print()
