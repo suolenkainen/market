@@ -148,7 +148,7 @@ class NeedsTests(unittest.TestCase):
 
     def test_10_adjust_need_prices(self):
             test_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 10.0, "priority": 0}]
-            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": True}]
+            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": False}]
             
             result_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 10.7, "priority": 0}]
 
@@ -159,7 +159,7 @@ class NeedsTests(unittest.TestCase):
 
     def test_11_adjust_need_prices_no_successfull_purchases(self):
             test_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 10.0, "priority": 0}]
-            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": False}]
+            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": True}]
             
             result_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 10.5, "priority": 0}]
 
@@ -170,7 +170,7 @@ class NeedsTests(unittest.TestCase):
 
     def test_12_adjust_need_prices_higher_priority(self):
             test_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 10.0, "priority": 2}]
-            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": False}]
+            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 11.0, "active": True}]
             
             result_needs = [{"idperson": 0, "idproduct": 0, "needs": 8.0, "price": 12.0, "priority": 2}]
 
@@ -184,10 +184,10 @@ class NeedsTests(unittest.TestCase):
                             {"idperson": 0, "idproduct": 1, "needs": 2.0, "price": 5.0, "priority": 0}, 
                             {"idperson": 1, "idproduct": 1, "needs": 2.0, "price": 10.0, "priority": 0}, 
                             {"idperson": 2, "idproduct": 0, "needs": 8.0, "price": 15.0, "priority": 2}]
-            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 6.0, "active": True},
-                                    {'id': 1, 'idproduct': 1, 'idpurchaser': 0, 'amount': 1, 'priceone': 5.0, "active": False},
-                                    {'id': 2, 'idproduct': 0, 'idpurchaser': 1, 'amount': 1, 'priceone': 10.0, "active": True},
-                                    {'id': 3, 'idproduct': 1, 'idpurchaser': 1, 'amount': 1, 'priceone': 11.0, "active": False}]
+            test_purchase_orders = [{'id': 0, 'idproduct': 0, 'idpurchaser': 0, 'amount': 1, 'priceone': 6.0, "active": False},
+                                    {'id': 1, 'idproduct': 1, 'idpurchaser': 0, 'amount': 1, 'priceone': 5.0, "active": True},
+                                    {'id': 2, 'idproduct': 0, 'idpurchaser': 1, 'amount': 1, 'priceone': 10.0, "active": False},
+                                    {'id': 3, 'idproduct': 1, 'idpurchaser': 1, 'amount': 1, 'priceone': 11.0, "active": True}]
             
             result_needs = [{"idperson": 0, "idproduct": 0, "needs": 2.0, "price": 5.8, "priority": 0}, 
                             {"idperson": 0, "idproduct": 1, "needs": 2.0, "price": 5.2, "priority": 0}, 
