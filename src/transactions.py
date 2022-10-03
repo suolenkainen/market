@@ -98,6 +98,7 @@ def crete_list_of_orders(purchase_orders, sales_orders, matches):
 
     return producer_transactions, people_transactions
 
+
 if __name__ == '__main__':
     # _test_purchase_dict = [{'id': 0, 'product': 0, 'purchaser': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'purchaser': 0, 'amount': 1, 'priceone': 10, "active": True}]
     # _test_sales_dict = [{'id': 0, 'product': 0, 'seller': 0, 'amount': 1, 'priceone': 11, "active": True}, {'id': 1, 'product': 2, 'seller': 0, 'amount': 1, 'priceone': 10, "active": True}]

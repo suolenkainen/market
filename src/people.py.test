@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+# Author: Pekka Marjamäki - Suolenkainen
+# https://github.com/suolenkainen/market
+
+
+import unittest
+import people
+
+
+class PeopleTests(unittest.TestCase):
+
+    # Testing combination of purchase and sell
+
+    def test_01_adjust_person_wealth(self):
+        test_person = {'id': 0, 'name': 'Alpha', 'wealth': 10.0, "active": True}
+        test_purchases = [{'person': 0, 'product': 0, 'amount': 1, 'price': 5.0}]
+        
+        result_people = {'id': 0, 'name': 'Alpha', 'wealth': 5.0, "active": True}
+
+        _result_people = people.adjust_person_wealth(test_person, test_purchases)
+        
+        self.assertEqual(_result_people, result_people)
+
+
+    def test_02_adjust_person_wealth_multiple_purchases(self):
+        test_person = {'id': 0, 'name': 'Alpha', 'wealth': 10.0, "active": True}
+        test_purchases = [{'person': 0, 'product': 0, 'amount': 1, 'price': 2.0}, {'person': 0, 'product': 2, 'amount': 3, 'price': 2.0}]
+        
+        result_people = {'id': 0, 'name': 'Alpha', 'wealth': 2.0, "active": True}
+
+        _result_people = people.adjust_person_wealth(test_person, test_purchases)
+        
+        self.assertEqual(_result_people, result_people)
+
+
+    def test_03_adjust_person_wealth_bankrupt(self):
+        test_person = {'id': 0, 'name': 'Alpha', 'wealth': 7.0, "active": True}
+        test_purchases = [{'person': 0, 'product': 0, 'amount': 1, 'price': 2.0}, {'person': 0, 'product': 2, 'amount': 3, 'price': 2.0}]
+        
+        result_people = {'id': 0, 'name': 'Alpha', 'wealth': 0.0, "active": False}
+
+        _result_people = people.adjust_person_wealth(test_person, test_purchases)
+        
+        self.assertEqual(_result_people, result_people)
+
+
+    def test_04_adjust_person_wealth_no_purchase(self):
+        test_person = {'id': 0, 'name': 'Alpha', 'wealth': 10.0, "active": True}
+        test_purchases = []
+        
+        result_people = {'id': 0, 'name': 'Alpha', 'wealth': 10.0, "active": True}
+
+        _result_people = people.adjust_person_wealth(test_person, test_purchases)
+        
+        self.assertEqual(_result_people, result_people)
+
+
+    def test_05_add_products_to_people(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 1.0}]
+        test_orders = [{'person': 0, 'product': 0, 'amount': 1.0, 'price': 5.0}]
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+    def test_06_add_products_to_people_no_orders(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}]
+        test_orders = []
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+    def test_07_add_products_to_people_new_order(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}]
+        test_orders = [{'person': 0, 'product': 1, 'amount': 1.0, 'price': 5.0}]
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}, 
+                                {'idperson': 0, 'idproduct': 1, 'amount': 1.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+    def test_08_add_products_to_people_two_orders(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}]
+        test_orders = [{'person': 0, 'product': 0, 'amount': 1.0, 'price': 5.0}, 
+                        {'person': 0, 'product': 1, 'amount': 1.0, 'price': 5.0}]
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 3.0}, 
+                                {'idperson': 0, 'idproduct': 1, 'amount': 1.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+    def test_09_add_products_to_people_two_people_two_orders(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}, 
+                                {'idperson': 1, 'idproduct': 2, 'amount': 2.0}]
+        test_orders = [{'person': 0, 'product': 0, 'amount': 1.0, 'price': 5.0}, 
+                        {'person': 1, 'product': 2, 'amount': 1.0, 'price': 5.0}]
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 3.0}, 
+                                {'idperson': 1, 'idproduct': 2, 'amount': 3.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+    def test_10_add_products_to_people_two_people_one_new_order(self):
+        test_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}, 
+                                {'idperson': 1, 'idproduct': 2, 'amount': 2.0}]
+        test_orders = [{'person': 0, 'product': 2, 'amount': 1.0, 'price': 5.0}]
+        
+        result_people_product = [{'idperson': 0, 'idproduct': 0, 'amount': 2.0}, 
+                                {'idperson': 1, 'idproduct': 2, 'amount': 2.0}, 
+                                {'idperson': 0, 'idproduct': 2, 'amount': 1.0}]
+
+        _result_people_product = people.add_products_to_people(test_people_product, test_orders)
+        
+        self.assertEqual(_result_people_product, result_people_product)
+
+
+if __name__ == '__main__':
+    unittest.main()
