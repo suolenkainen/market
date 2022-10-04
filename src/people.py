@@ -5,28 +5,29 @@
 from subprocess import check_output
 
 
-def adjust_person_wealth(person, purchases):
-    
-    for _order in purchases:
-        if person["id"] == _order["person"]:
-            _price = round(_order["amount"] * _order["price"], 1)
-            person["wealth"] = person["wealth"] - _price
-            if person["wealth"] < 0:
-                person["wealth"] = 0.0
-                person["active"] = False
+def adjust_person_wealth(people, purchases):
 
-    return person
+    for _person in people:
+        for _order in purchases:
+            if _person["id"] == _order["idperson"]:
+                _price = round(_order["amount"] * _order["price"], 1)
+                _person["wealth"] = _person["wealth"] - _price
+                if _person["wealth"] < 0:
+                    _person["wealth"] = 0.0
+                    _person["active"] = False
+
+    return people
 
 
-def add_products_to_people(people_product, orders):
+def add_products_to_people(people_product, purchase_orders):
 
-    for _order in orders:
+    for _order in purchase_orders:
         for _row in people_product:
-            if _order["person"] == _row["idperson"] and _order["product"] == _row["idproduct"]:
+            if _order["idperson"] == _row["idperson"] and _order["idproduct"] == _row["idproduct"]:
                 _row["amount"] = _row["amount"] + _order["amount"]
                 break
-            elif _order["person"] == _row["idperson"] and _order["product"] != _row["idproduct"]:
-                _new_row = {'idperson': _order["person"], 'idproduct': _order["product"], 'amount': _order["amount"]}
+            elif _order["idperson"] == _row["idperson"] and _order["idproduct"] != _row["idproduct"]:
+                _new_row = {'idperson': _order["idperson"], 'idproduct': _order["idproduct"], 'amount': _order["amount"]}
                 people_product.append(_new_row)
                 break
 

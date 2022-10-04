@@ -5,13 +5,13 @@
 from subprocess import check_output
 
 
-def deactivate_person(persons, needs):
+def deactivate_person(people, needs):
 
     deactive_list = []
 
     for _need in needs:
-        if _need["priority"] == 3:
-            for _person in persons:
+        if _need["idpriority"] == 3:
+            for _person in people:
                 if _need["idperson"] == _person["id"]:
                     _person["active"] = False
                     deactive_list.append(_person["id"])
@@ -21,7 +21,7 @@ def deactivate_person(persons, needs):
             
     needs[:] = [d for d in needs if d.get("idperson") != -1]
 
-    return persons, needs
+    return people, needs
 
     
 def people_consume_products_and_generate_needs(people_products, needs):
@@ -34,13 +34,13 @@ def people_consume_products_and_generate_needs(people_products, needs):
             if _need["idperson"] == _resource["idperson"] and _need["idproduct"] == _resource["idproduct"]:
                 _resource["amount"] = _resource["amount"] - _need["needs"]
                 if _resource["amount"] <= 0:
-                    _need["priority"] += 1
+                    _need["idpriority"] += 1
                     _need["needs"] = _need["needs"] * 2
                     _resource["amount"] = 0
                     continue
-                if _need["priority"] != 0:
-                    _need["needs"] = _need["needs"] / (_need["priority"] * 2)
-                _need["priority"] = 0
+                if _need["idpriority"] != 0:
+                    _need["needs"] = _need["needs"] / (_need["idpriority"] * 2)
+                _need["idpriority"] = 0
 
     people_products[:] = [d for d in people_products if d.get("amount") != 0]
 
@@ -52,8 +52,8 @@ def adjust_need_prices(needs, purchase_orders):
 
     for _need in needs:
         for _order in purchase_orders:
-            if _need["priority"] != 0:
-                _need["price"] = round(_need["price"] * (1 + _need["priority"] * price_adjusting * 2), 1)
+            if _need["idpriority"] != 0:
+                _need["price"] = round(_need["price"] * (1 + _need["idpriority"] * price_adjusting * 2), 1)
                 break
             elif _need["idperson"] == _order["idpurchaser"] and _need["idproduct"] == _order["idproduct"] and not _order["active"]:
                 _need["price"] = round(_order["priceone"] * (1 - price_adjusting / 2), 1)

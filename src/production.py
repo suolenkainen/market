@@ -4,39 +4,40 @@
 
 from subprocess import check_output
 
-def generate_products_for_producers(producer, storage):
+def generate_products_for_producers(producers, storage):
 
-    _produced = producer["speed"]
-    _new_goods_required = True
-    for _goods in storage:
-        if _goods["idproducer"] == producer["id"]:
-            if _goods["amount"] + _produced > producer["max"]:
-                _diff = _goods["amount"] + _produced - producer["max"]
-                _goods["amount"] = producer["max"]
-                producer["waste"] = _diff
-            else:
-                _goods["amount"] += _produced
-                producer["waste"] = 0.0
-            _new_goods_required = False
-            break
-    if _new_goods_required:
-        _new_stock = {'idproducer': producer["id"], 'idproduct': producer["idproduct"], 'amount': _produced}
-        storage.append(_new_stock)
+    for _producer in  producers:
+        _produced = _producer["speed"]
+        _new_goods_required = True
+        for _goods in storage:
+            if _goods["idproducer"] == _producer["id"]:
+                if _goods["amount"] + _produced > _producer["max"]:
+                    _diff = _goods["amount"] + _produced - _producer["max"]
+                    _goods["amount"] = _producer["max"]
+                    _producer["waste"] = _diff
+                else:
+                    _goods["amount"] += _produced
+                    _producer["waste"] = 0.0
+                _new_goods_required = False
+                break
+        if _new_goods_required:
+            _new_stock = {'idproducer': _producer["id"], 'idproduct': _producer["idproduct"], 'amount': _produced}
+            storage.append(_new_stock)
 
-    return producer, storage
+    return producers, storage
 
 
-def adjust_product_prices(producer, purchases):
+def adjust_product_prices(producers, purchases):
     price_adjusting = 0.05
+    for _producer in producers:
+        if purchases == []:
+            _producer["price"] = round(_producer["price"] / (price_adjusting + 1), 1)
+        elif len(purchases) == 1:
+            _producer["price"] = round(purchases[0]["price"] * (price_adjusting / 2 + 1), 1)
+        else:
+            _producer["price"] = round(purchases[0]["price"] * (price_adjusting * len(purchases) + 1), 1)
 
-    if purchases == []:
-        producer["price"] = round(producer["price"] / (price_adjusting + 1), 1)
-    elif len(purchases) == 1:
-        producer["price"] = round(purchases[0]["price"] * (price_adjusting / 2 + 1), 1)
-    else:
-        producer["price"] = round(purchases[0]["price"] * (price_adjusting * len(purchases) + 1), 1)
-
-    return producer
+    return producers
 
 
 if __name__ == '__main__':

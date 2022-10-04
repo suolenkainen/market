@@ -173,7 +173,7 @@ class TransactionTests(unittest.TestCase):
         result_producer_transactions =  [{'idproducer': 0, 'idproduct': 0, 'price': 10}]
         result_people_transactions = [{'idperson': 0, 'idproduct': 0, 'amount': 1, 'price': 10}]
 
-        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_purchase_orders, test_sales_orders, test_matches)
+        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_matches, test_purchase_orders, test_sales_orders)
         
         self.assertEqual(_result_producer_transactions, result_producer_transactions)
         self.assertEqual(_result_people_transactions, result_people_transactions)
@@ -188,7 +188,7 @@ class TransactionTests(unittest.TestCase):
         result_producer_transactions =  [{'idproducer': 0, 'idproduct': 0, 'price': 10}]
         result_people_transactions = [{'idperson': 0, 'idproduct': 0, 'amount': 1, 'price': 10}]
 
-        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_purchase_orders, test_sales_orders, test_matches)
+        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_matches, test_purchase_orders, test_sales_orders)
         
         self.assertEqual(_result_producer_transactions, result_producer_transactions)
         self.assertEqual(_result_people_transactions, result_people_transactions)
@@ -203,7 +203,7 @@ class TransactionTests(unittest.TestCase):
         result_producer_transactions =  []
         result_people_transactions = []
 
-        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_purchase_orders, test_sales_orders, test_matches)
+        _result_producer_transactions, _result_people_transactions = transactions.crete_list_of_orders(test_matches, test_purchase_orders, test_sales_orders)
         
         self.assertEqual(_result_producer_transactions, result_producer_transactions)
         self.assertEqual(_result_people_transactions, result_people_transactions)
