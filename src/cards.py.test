@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+# Author: Pekka Marjamäki - Suolenkainen
+# https://github.com/suolenkainen/market
+
+
+import unittest
+import cards
+
+
+class TransactionTests(unittest.TestCase):
+
+
+    def test_1_generate_list_of_cards_from_source_data(self):
+        test_data_dictionary = [{'ID': 222, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0, 'NORMAL_AMOUNT': 2, 'FOIL_AMOUNT': 1, 'HOLOGRAM_AMOUNT': 1, 'GOLD_AMOUNT': 1},
+                                {'ID': 223, 'SET_ID': 'P1-002', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Island', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0, 'NORMAL_AMOUNT': 1, 'FOIL_AMOUNT': 1, 'HOLOGRAM_AMOUNT': 0, 'GOLD_AMOUNT': 0}]
+        test_result_dict = [{'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 1, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 2, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Foil', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 3, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Hologram', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 4, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Gold', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 5, 'SET_ID': 'P1-002', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Island', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0},
+                            {'ID': 6, 'SET_ID': 'P1-002', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Island', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Foil', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}]
+
+        _result_dict = cards.generate_list_of_cards_from_source_data(test_data_dictionary)
+
+        self.assertEqual(_result_dict, test_result_dict)
+
+
+    def test_2_connect_card_to_person_add_new_to_empty(self):
+        test_data_card = {'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}
+        test_data_person = {'ID': 0, 'NAME': 'Forest Gump', 'WEALTH': 500, 'INCREASE_MONTHLY': 0, 'GAME_ABILITY': 'Normal'}
+        test_data_card_person = []
+        test_data_transfer_data = {'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}
+
+        result_card_person = [{'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        
+        _result_card_person = cards.connect_card_to_person(test_data_card, test_data_person, test_data_card_person, test_data_transfer_data)
+
+        self.assertEqual(_result_card_person, result_card_person)
+
+
+    def test_3_connect_card_to_person_add_new_to_list(self):
+        test_data_card = {'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}
+        test_data_person = {'ID': 0, 'NAME': 'Forest Gump', 'WEALTH': 500, 'INCREASE_MONTHLY': 0, 'GAME_ABILITY': 'Normal'}
+        test_data_card_person = [{'CARD_ID': 7, 'PERSON_ID': 3, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        test_data_transfer_data = {'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}
+
+        result_card_person = [{'CARD_ID': 7, 'PERSON_ID': 3, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}, {'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        
+        _result_card_person = cards.connect_card_to_person(test_data_card, test_data_person, test_data_card_person, test_data_transfer_data)
+
+        self.assertEqual(_result_card_person, result_card_person)
+
+
+    def test_4_connect_card_to_person_duplicate(self):
+        test_data_card = {'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}
+        test_data_person = {'ID': 0, 'NAME': 'Forest Gump', 'WEALTH': 500, 'INCREASE_MONTHLY': 0, 'GAME_ABILITY': 'Normal'}
+        test_data_card_person = [{'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        test_data_transfer_data = {'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}
+
+        result_card_person = [{'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        
+        _result_card_person = cards.connect_card_to_person(test_data_card, test_data_person, test_data_card_person, test_data_transfer_data)
+
+        self.assertEqual(_result_card_person, result_card_person)
+
+
+    def test_5_connect_card_to_person_update_existing(self):
+        test_data_card = {'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}
+        test_data_person = {'ID': 0, 'NAME': 'Forest Gump', 'WEALTH': 500, 'INCREASE_MONTHLY': 0, 'GAME_ABILITY': 'Normal'}
+        test_data_card_person = [{'CARD_ID': 0, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        test_data_transfer_data = {'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}
+
+        result_card_person = [{'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        
+        _result_card_person = cards.connect_card_to_person(test_data_card, test_data_person, test_data_card_person, test_data_transfer_data)
+
+        self.assertEqual(_result_card_person, result_card_person)
+
+
+    def test_6_connect_card_to_person_update_existing_mass(self):
+        test_data_card = {'ID': 0, 'SET_ID': 'P1-001', 'SET': 'Promo pack 1: Pride Month', 'COLOUR': 'Green', 'NAME': 'Forest', 'TYPE': 'Mana', 'ATTRIBUTE': 'Mana source', 'RARITY': 'Common', 'SPECIAL' : 'Normal', 'ARTIST': 'Corym Baghig', 'DESCRIPTION': 0}
+        test_data_person = {'ID': 0, 'NAME': 'Forest Gump', 'WEALTH': 500, 'INCREASE_MONTHLY': 0, 'GAME_ABILITY': 'Normal'}
+        test_data_card_person = [{'CARD_ID': 2, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 1, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 4, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 3, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 5, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 6, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 7, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 8, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                                {'CARD_ID': 0, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        test_data_transfer_data = {'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}
+
+        result_card_person = [{'CARD_ID': 2, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}, 
+                            {'CARD_ID': 1, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 4, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 3, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 5, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 6, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 7, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 8, 'PERSON_ID': 4, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2},
+                            {'CARD_ID': 0, 'PERSON_ID': 0, 'DATE': '01/01/2000', 'DESIRABILITY': 0, 'PRICE': 0, 'PREVIOUS_OWNER': 2}]
+        
+        _result_card_person = cards.connect_card_to_person(test_data_card, test_data_person, test_data_card_person, test_data_transfer_data)
+
+        self.assertEqual(_result_card_person, result_card_person)
+
+
+if __name__ == '__main__':
+    unittest.main()
