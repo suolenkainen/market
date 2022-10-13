@@ -1,0 +1,5 @@
+"ID","NAME","TYPE","ARTIST","CARD_ID","CARD_TYPE","CARD_RARITY","SET","COLOUR","GENERAL_ATTRACTION"
+0,"Super Rare cards","CARD_RARITY",,,,"Super Rare",,,3
+1,"Rare cards","CARD_RARITY",,,,"Super Rare",,,2
+2,"Pride Month","SET",,,,,"Promo Pack 1: Pride Month",,2
+3,"Assulla Mordelet cards","ARTIST","Assulla Mordelet",,,,,,3

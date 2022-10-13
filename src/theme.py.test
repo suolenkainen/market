@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# Author: Pekka Marjamäki - Suolenkainen
+# https://github.com/suolenkainen/market
+
+
+import unittest
+import cards
+
+
+class ThemeTests(unittest.TestCase):
+
+    def test(self):
+        pass
+
+
+
+if __name__ == '__main__':
+    unittest.main()
