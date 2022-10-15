@@ -45,11 +45,5 @@ def generate_list_of_cards_from_source_data(data_dictionary):
     return list_of_individual_cards
 
 
-
-
-def connect_card_to_theme():
-    pass
-
-
 if __name__ == '__main__':
     check_output("python .\\src\\cards.py.test -v", shell=True)
