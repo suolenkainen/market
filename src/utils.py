@@ -19,11 +19,8 @@ def csv_to_dict_converter(filename):
             
             # Converts integers to proper form
             regint = r"[0-9]"
-            regid = r"id[a-z]*"
-            if regmatch(regid, key):
+            if regmatch(regint, value):
                 _dict[key] = int(value)
-            elif regmatch(regint, value):
-                _dict[key] = float(value)
 
             # Converts boolean to proper form
             if value in ["True", "False"]:
@@ -31,6 +28,6 @@ def csv_to_dict_converter(filename):
 
     return _result_list_dicts
     
-
+    
 if __name__ == '__main__':
     check_output("python .\\src\\utils.py.test -v", shell=True)

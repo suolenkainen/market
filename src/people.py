@@ -34,6 +34,23 @@ def add_products_to_people(people_product, purchase_orders):
     return people_product
 
 
+def connect_card_to_person(card, person, card_person_connection, transfer_data):
+    _person_id = person["ID"]
+    _card_id = card["ID"]
+    
+    for _connection in card_person_connection:
+        if _connection['CARD_ID'] == _card_id:
+            _connection['PERSON_ID'] = _person_id
+            return card_person_connection
+    
+    _new_connection = transfer_data
+    _new_connection['CARD_ID'] = _card_id
+    _new_connection['PERSON_ID'] = _person_id
+    card_person_connection.append(_new_connection)
+
+    return card_person_connection
+
+
 if __name__ == '__main__':
 
     check_output("python .\\src\\people.py.test -v", shell=True)
