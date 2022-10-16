@@ -18,7 +18,7 @@ def csv_to_dict_converter(filename):
         for key, value in _dict.items():
             
             # Converts integers to proper form
-            regint = r"[0-9]"
+            regint = r"^[0-9]"
             if regmatch(regint, value):
                 _dict[key] = int(value)
 
