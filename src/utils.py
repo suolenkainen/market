@@ -9,7 +9,7 @@ from re import match as regmatch
 
 def csv_to_dict_converter(filename):
     with open(filename, newline='') as csvfile:
-        file_data=csv.reader(csvfile)
+        file_data=csv.reader(csvfile, delimiter='|')
         headers=next(file_data)
         _result_list_dicts = [dict(zip(headers,i)) for i in file_data]
     csvfile.close()

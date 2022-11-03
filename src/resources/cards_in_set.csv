@@ -1,21 +1,21 @@
-"ID","SET_ID","SET","COLOUR","NAME","TYPE","ATTRIBUTE","RARITY","ARTIST","DESCRIPTION","NORMAL_AMOUNT","FOIL_AMOUNT","HOLOGRAM_AMOUNT","GOLD_AMOUNT"
-222,"P1-001","Promo pack 1: Pride Month","Green","Forest","Mana","Mana source","Common","Corym Baghig",0,40,10,4,0
-223,"P1-002","Promo pack 1: Pride Month","Red","Hills","Mana","Mana source","Common","Corym Baghig",0,40,10,4,0
-224,"P1-003","Promo pack 1: Pride Month","Yellow","Desert","Mana","Mana source","Common","Corym Baghig",0,40,10,4,0
-225,"P1-004","Promo pack 1: Pride Month","Blue","Sand Castle","Location","Fortress","Rare","Assulla Mordelet","It is a child's play to make something this sturdy.",5,5,2,1
-226,"P1-005","Promo pack 1: Pride Month","Green","Tadpole Pool","Location","Spawning Pool","Uncommon","Assulla Mordelet","New life emerges every day.",15,5,1,0
-227,"P1-006","Promo pack 1: Pride Month","Red","Earthworks","Location","Fortress","Uncommon","Assulla Mordelet","One hole is better than no hole.",15,5,1,0
-228,"P1-007","Promo pack 1: Pride Month","Yellow","Summoning Circle","Location","Mana boost","Uncommon","Assulla Mordelet","I summon thee\, the Sleeping One.",15,5,1,0
-229,"P1-008","Promo pack 1: Pride Month","Brown","False Floor","Location","Trap","Uncommon","Assulla Mordelet","I'm sure this is the right way…",15,5,1,0
-230,"P1-009","Promo pack 1: Pride Month","Colouless","King's Halls","Location","Mana boost","Uncommon","Assulla Mordelet","King Ku-haa the Third",15,5,1,0
-231,"P1-010","Promo pack 1: Pride Month","Blue","Caratos","Creature","Beast","Common","Assulla Mordelet","Look away and he'll eat your soul!",15,5,1,0
-232,"P1-011","Promo pack 1: Pride Month","Green","Golden Rabbit","Creature","Magical","Common","Assulla Mordelet","I saw a golden rabbit one day. It ran really fast. Like, REALLY fast.",25,5,2,1
-233,"P1-012","Promo pack 1: Pride Month","Red","Dark-one Spy","Creature","Humanoid","Common","Corym Baghig","You see him now. Oh\, you missed him.",25,5,1,0
-234,"P1-013","Promo pack 1: Pride Month","Red","Earth Elemental","Creature","Terrestrial","Common","Corym Baghig","It blends in to the hillside. It punches you in the face.",25,5,1,0
-235,"P1-014","Promo pack 1: Pride Month","Red","Iron Spirit","Creature","Spirit","Rare","Corym Baghig","Iron claws will tear you apart",10,5,2,1
-236,"P1-015","Promo pack 1: Pride Month","Yellow","Sand Ghost","Creature","Spirit","Common","Corym Baghig","Towering over a thousand foot\, it looks down and laughs at you.",25,5,1,0
-237,"P1-016","Promo pack 1: Pride Month","White","Dog with a Top Hat","Creature","Magical","Common","Corym Baghig","What are you looking at?",25,5,1,0
-238,"P1-017","Promo pack 1: Pride Month","Blue","Ring of Rain","Item","Attack","Uncommon","Corym Baghig","Make it rain",15,5,1,0
-239,"P1-018","Promo pack 1: Pride Month","Green","Armor of Healing","Item","Protection","Uncommon","Corym Baghig","Clumsy and clanging. Still feels good.",15,5,1,0
-240,"P1-019","Promo pack 1: Pride Month","Yellow","Immovable Shelter","Item","Protection","Rare","Corym Baghig","In the wind\, it's nice to remain still.",10,2,1,1
-241,"P1-020","Promo pack 1: Pride Month","Colourless","Tooth and Nail","Item","Attack","Uncommon","Corym Baghig","Sometimes you need to keep your grip to reality with tooth and nail.",15,5,2,2
+id|set_id|set|colour|name|type|attribute|rarity|artist|description|normal_amount|foil_amount|hologram_amount|gold_amount
+222|P1-001|Promo pack 1: Pride Month|Green|Forest|Mana|Mana source|Common|Corym Baghig|0|40|10|4|0
+223|P1-002|Promo pack 1: Pride Month|Red|Hills|Mana|Mana source|Common|Corym Baghig|0|40|10|4|0
+224|P1-003|Promo pack 1: Pride Month|Yellow|Desert|Mana|Mana source|Common|Corym Baghig|0|40|10|4|0
+225|P1-004|Promo pack 1: Pride Month|Blue|Sand Castle|Location|Fortress|Rare|Assulla Mordelet|It is a child's play to make something this sturdy.|5|5|2|1
+226|P1-005|Promo pack 1: Pride Month|Green|Tadpole Pool|Location|Spawning Pool|Uncommon|Assulla Mordelet|New life emerges every day.|15|5|1|0
+227|P1-006|Promo pack 1: Pride Month|Red|Earthworks|Location|Fortress|Uncommon|Assulla Mordelet|One hole is better than no hole.|15|5|1|0
+228|P1-007|Promo pack 1: Pride Month|Yellow|Summoning Circle|Location|Mana boost|Uncommon|Assulla Mordelet|I summon thee, the Sleeping One.|15|5|1|0
+229|P1-008|Promo pack 1: Pride Month|Brown|False Floor|Location|Trap|Uncommon|Assulla Mordelet|I'm sure this is the right way…|15|5|1|0
+230|P1-009|Promo pack 1: Pride Month|Colouless|King's Halls|Location|Mana boost|Uncommon|Assulla Mordelet|King Ku-haa the Third|15|5|1|0
+231|P1-010|Promo pack 1: Pride Month|Blue|Caratos|Creature|Beast|Common|Assulla Mordelet|Look away and he'll eat your soul!|15|5|1|0
+232|P1-011|Promo pack 1: Pride Month|Green|Golden Rabbit|Creature|Magical|Common|Assulla Mordelet|I saw a golden rabbit one day. It ran really fast. Like| REALLY fast.|25|5|2|1
+233|P1-012|Promo pack 1: Pride Month|Red|Dark-one Spy|Creature|Humanoid|Common|Corym Baghig|You see him now. Oh, you missed him.|25|5|1|0
+234|P1-013|Promo pack 1: Pride Month|Red|Earth Elemental|Creature|Terrestrial|Common|Corym Baghig|It blends in to the hillside. It punches you in the face.|25|5|1|0
+235|P1-014|Promo pack 1: Pride Month|Red|Iron Spirit|Creature|Spirit|Rare|Corym Baghig|Iron claws will tear you apart|10|5|2|1
+236|P1-015|Promo pack 1: Pride Month|Yellow|Sand Ghost|Creature|Spirit|Common|Corym Baghig|Towering over a thousand foot, it looks down and laughs at you.|25|5|1|0
+237|P1-016|Promo pack 1: Pride Month|White|Dog with a Top Hat|Creature|Magical|Common|Corym Baghig|What are you looking at?|25|5|1|0
+238|P1-017|Promo pack 1: Pride Month|Blue|Ring of Rain|Item|Attack|Uncommon|Corym Baghig|Make it rain|15|5|1|0
+239|P1-018|Promo pack 1: Pride Month|Green|Armor of Healing|Item|Protection|Uncommon|Corym Baghig|Clumsy and clanging. Still feels good.|15|5|1|0
+240|P1-019|Promo pack 1: Pride Month|Yellow|Immovable Shelter|Item|Protection|Rare|Corym Baghig|In the wind, it's nice to remain still.|10|2|1|1
+241|P1-020|Promo pack 1: Pride Month|Colourless|Tooth and Nail|Item|Attack|Uncommon|Corym Baghig|Sometimes you need to keep your grip to reality with tooth and nail.|15|5|2|2

@@ -1,6 +1,6 @@
-"id","name","wealth","active"
-0,"Alpha",100.0,True
-1,"Beta",100.0,True
-2,"Gamma",100.0,True
-3,"Delta",100.0,True
-4,"Epsilon",100.0,True
+id|name|wealth|active
+0|Alpha|100.0|True
+1|Beta|100.0|True
+2|Gamma|100.0|True
+3|Delta|100.0|True
+4|Epsilon|100.0|True
