@@ -2,12 +2,9 @@
 # Author: Pekka Marjamäki - Suolenkainen
 # https://github.com/suolenkainen/market
 
-from data import PRODUCT, PEOPLE, PEOPLE_PRODUCT, PRODUCERS, STORAGE, PURCHASE_ORDERS, SALES_ORDERS, MARKET_PRICES, NEEDS, PRIORITIES
-from data import PRODUCT_ID, PEOPLE_ID, PRODUCERS_ID, PURCHASE_ORDERS_ID, SALES_ORDERS_ID
+from data import PEOPLE, PURCHASE_ORDERS, SALES_ORDERS, MARKET_PRICES
+from data import PEOPLE_ID, PURCHASE_ORDERS_ID, SALES_ORDERS_ID
 import transactions, people, needs, production
-
-# print(PRODUCT, PRODUCERS, PEOPLE, PEOPLE_PRODUCT,STORAGE, PURCHASE_ORDERS, SALES_ORDERS, MARKET_PRICES, NEEDS, PRIORITIES)
-# print(PRODUCT_ID, PEOPLE_ID, PRODUCERS_ID, PURCHASE_ORDERS_ID, SALES_ORDERS_ID)
 
 
 # Handle transactions -> matches, and purchases and sales in dict form

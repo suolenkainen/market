@@ -16,14 +16,22 @@ def csv_to_dict_converter(filename):
 
     for _dict in _result_list_dicts:
         for key, value in _dict.items():
-            
+            regid = r"id"
+            regamount = r"amount"
+            if regmatch(regid, value) or regmatch(regamount, value):
+                _dict[key] = int(value)
+                continue
+            if key == "date":
+                _dict[key] = str(value)
+                continue
             # Converts integers to proper form
             regint = r"^[0-9]"
             if regmatch(regint, value):
-                _dict[key] = int(value)
+                _dict[key] = float(value)
+                continue
 
             # Converts boolean to proper form
-            if value in ["True", "False"]:
+            elif value in ["True", "False"]:
                 _dict[key] = bool(value)
 
     return _result_list_dicts

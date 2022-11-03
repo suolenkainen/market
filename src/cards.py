@@ -14,29 +14,29 @@ def generate_list_of_cards_from_source_data(data_dictionary):
     for _card_element in data_dictionary:
         while True:
             individual_card = {}
-            individual_card['ID'] =  running_id
-            individual_card['SET_ID'] = _card_element['SET_ID']
-            individual_card['SET'] = _card_element['SET']
-            individual_card['COLOUR'] = _card_element['COLOUR'] 
-            individual_card['NAME'] = _card_element['NAME']
-            individual_card['TYPE'] = _card_element['TYPE']
-            individual_card['ATTRIBUTE'] = _card_element['ATTRIBUTE']
-            individual_card['RARITY'] = _card_element['RARITY']
-            individual_card['ARTIST'] = _card_element['ARTIST'] 
-            individual_card['DESCRIPTION'] = _card_element['DESCRIPTION']
+            individual_card['id'] =  running_id
+            individual_card['set_id'] = _card_element['set_id']
+            individual_card['set'] = _card_element['set']
+            individual_card['colour'] = _card_element['colour'] 
+            individual_card['name'] = _card_element['name']
+            individual_card['type'] = _card_element['type']
+            individual_card['attribute'] = _card_element['attribute']
+            individual_card['rarity'] = _card_element['rarity']
+            individual_card['artist'] = _card_element['artist'] 
+            individual_card['description'] = _card_element['description']
 
-            if _card_element['NORMAL_AMOUNT'] != 0:
-                individual_card['SPECIAL'] = 'Normal'
-                _card_element['NORMAL_AMOUNT'] -= 1
-            elif _card_element['FOIL_AMOUNT'] != 0:
-                individual_card['SPECIAL'] = 'Foil'
-                _card_element['FOIL_AMOUNT'] -= 1
-            elif _card_element['HOLOGRAM_AMOUNT'] != 0:
-                individual_card['SPECIAL'] = 'Hologram'
-                _card_element['HOLOGRAM_AMOUNT'] -= 1
-            elif _card_element['GOLD_AMOUNT'] != 0:
-                individual_card['SPECIAL'] = 'Gold'
-                _card_element['GOLD_AMOUNT'] -= 1
+            if _card_element['normal_amount'] != 0:
+                individual_card['special'] = 'Normal'
+                _card_element['normal_amount'] -= 1
+            elif _card_element['foil_amount'] != 0:
+                individual_card['special'] = 'Foil'
+                _card_element['foil_amount'] -= 1
+            elif _card_element['hologram_amount'] != 0:
+                individual_card['special'] = 'Hologram'
+                _card_element['hologram_amount'] -= 1
+            elif _card_element['gold_amount'] != 0:
+                individual_card['special'] = 'Gold'
+                _card_element['gold_amount'] -= 1
             else:
                 break
             list_of_individual_cards.append(individual_card)

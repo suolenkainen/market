@@ -48,7 +48,7 @@ for x in range(8):
     booster_cards.append(booster_card)
 
 for k, _card in enumerate(booster_cards):
-    image = Image.open(folder + _card["SET_ID"] + ".jpg")
+    image = Image.open(folder + _card["set_id"] + ".jpg")
     image_size = image.size
     if k == 0:
         new_image = Image.new('RGB',(8*image1_size[0], image1_size[1]), (250,250,250))
