@@ -1,0 +1,26 @@
+id|card_type|attribute
+0|mana|source
+1|mana|mana boost
+2|location|mana boost
+3|location|Fortress
+4|location|spawning Pool
+5|location|trap
+6|creature|aquatic
+7|creature|beast
+8|creature|humanoid
+9|creature|avian
+10|creature|terrestrial
+11|creature|divine
+12|creature|demonic
+13|creature|spirit
+14|creature|magical
+15|creature|ancient
+16|creature|animal
+17|creature|giant
+18|creature|tribal
+19|enchantment|damaging
+20|enchantment|healing
+21|enchantment|deck
+22|item|variant
+23|item|attack
+24|item|protection
