@@ -4,6 +4,7 @@
 
 import random
 import copy
+import math
 
 decks = [["Island", True, [], [], 0, 0, 0, None, 1, "blue", "mana", 1],
         ["Island", True, [], [], 0, 0, 0, None, 1, "blue", "mana", 1],
@@ -61,8 +62,8 @@ class Card():
         self.attraction = attraction
 
 class Player():
-    def __init__(self):
-        self.name = "Player 1"
+    def __init__(self, id):
+        self.name = f"Player {id}"
         self.deck = []
         self.hand = []
         self.table = []
@@ -84,16 +85,18 @@ while True:
 
     for n in range(2):
         id = 0
-        player = Player()
+        player = Player(n)
         owndeck = []
         for c in decks:
             card = Card([id] + c)
             owndeck.append(card)
             id += 1
-        player.deck = owndeck
+        player.deck = copy.deepcopy(default_deck)
+        topten = sorted(player.deck, key=lambda d: d.attraction, reverse=True)[:10]
+        del player.deck[:7]
         random.seed(n + n*cycles)
         random.shuffle(player.deck)
-        player.deck = player.deck[:20]
+        player.deck = topten + player.deck[:13]
         players.append(player)
 
     for player in players:
@@ -172,28 +175,31 @@ while True:
                         enemy.health -= card.attack
                         player.table[k].active == False
             if k == len(player.table) - 1:
+                print(f"{cycles}")
                 break
-            # for enemy_card in enemy.table:
-            #     if table_card.preferred == enemy_card.cost_type:
-            #         attack_card = enemy.table
 
         finish = False
-        if player.deck == []:
+        winner = player.name
+        if player.deck == [] or cycles in [1,2,3,4,5] or player.health < 1:
             print("Enemy won")
             finish = True
+            winner = enemy.name
         if enemy.health < 1 or finish:
-            print(f"{player.name} IS VICTORIOUS!! on cycle {cycles}")
+            print(f"{winner} IS VICTORIOUS!! on cycle {cycles}")
             player.deck += player.hand + player.discard + player.table
             enemy.deck += enemy.hand + enemy.discard + enemy.table
             for card in player.deck:
-                card.attraction = round(card.attraction * 1.10, 2)
+                card.attraction = 2.00
             for card in enemy.deck:
-                card.attraction = round(card.attraction / 1.10, 2)
+                card.attraction = 0.50
             all_deck_cards = player.deck + enemy.deck
             for ids in all_deck_cards:
                 for card_id in default_deck:
                     if ids.id == card_id.id:
-                        card_id.attraction = round(ids.attraction * card_id.attraction, 2)
+                        card_id.attraction = round(math.sqrt(ids.attraction * card_id.attraction), 2)
+                        break
+            printdeck = sorted(default_deck, key=lambda d: d.attraction, reverse=True)
+
             break
         if attacker == 1:
             attacker = 0
@@ -202,7 +208,9 @@ while True:
             attacker = 1
             defender = 0
     cycles += 1
-    if cycles == 50:
+    if cycles == 500:
+        for n in printdeck[:20]:
+            print(n.name, n.attraction, n.attack, n.defence, n.cost, n.cost_type)
         break
 
 
