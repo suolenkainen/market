@@ -53,4 +53,4 @@ def connect_card_to_person(card, person, card_person_connection, transfer_data):
 
 if __name__ == '__main__':
 
-    check_output("python .\\src\\people.py.test -v", shell=True)
+    check_output("python .\\src\\people.test.py -v", shell=True)

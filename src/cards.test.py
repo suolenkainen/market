@@ -7,7 +7,7 @@ import unittest
 import cards
 
 
-class TransactionTests(unittest.TestCase):
+class CardsTests(unittest.TestCase):
 
 
     def test_1_generate_list_of_cards_from_source_data(self):

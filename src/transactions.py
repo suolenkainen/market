@@ -100,4 +100,4 @@ def crete_list_of_orders(matches, purchase_orders, sales_orders):
 
 
 if __name__ == '__main__':
-    check_output("python .\\src\\transactions.py.test -v", shell=True)
+    check_output("python .\\src\\transactions.test.py -v", shell=True)

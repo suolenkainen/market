@@ -66,4 +66,4 @@ def adjust_need_prices(needs, purchase_orders):
 
 if __name__ == '__main__':
 
-    check_output("python .\\src\\needs.py.test -v", shell=True)
+    check_output("python .\\src\\needs.test.py -v", shell=True)

@@ -16,4 +16,4 @@ def connect_cards_to_a_theme(cards, theme, card_theme_connections):
 
 
 if __name__ == '__main__':
-    check_output("python .\\src\\theme.py.test -v", shell=True)
+    check_output("python .\\src\\theme.test.py -v", shell=True)

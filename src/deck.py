@@ -35,4 +35,4 @@ def release_deck(deck, date):
 
 
 if __name__ == '__main__':
-    check_output("python .\\src\\deck.py.test -v", shell=True)
+    check_output("python .\\src\\deck.test.py -v", shell=True)

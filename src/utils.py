@@ -38,4 +38,4 @@ def csv_to_dict_converter(filename):
     
     
 if __name__ == '__main__':
-    check_output("python .\\src\\utils.py.test -v", shell=True)
+    check_output("python .\\src\\utils.test.py -v", shell=True)

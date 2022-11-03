@@ -1,0 +1,24 @@
+id|name|description
+0|awaken|Allows one inactive card to activate
+1|blocker|Causes the target enemy card to be blocked
+2|building|Cannot attack
+3|counter|Disables aby opponent ability for 1 round
+4|curse|Lower target defence
+5|cycling|Can be moved from hand to discard and be replaced with a new card
+6|draw2|Allows drawing two cards
+7|draw3|Allows drawing three cards
+8|equip|Can be attached to a creature to grant abilities
+9|goad|Can take cause enemy to attack it instead of other creatures
+10|haste|Can attack twice in a turn
+11|healing|Heals player with one point
+12|healing2|Heals player with two points
+13|healing3|Heals player with three points
+14|healing4|Heals player with four points
+15|instant|Can be played on the turn it arrives to table
+16|mana|Grants mana to mana pool
+17|rage|Wounds any creature attacking it
+18|rend|If attack is larger than target defence, the excess is damage is dealt to the player
+19|resurrect|Returns latest card in discard deck to hand
+20|shield|Add 1 to target defence
+21|strenght|Add 1 to target attack
+22|wither|Lower target attack
