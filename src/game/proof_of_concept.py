@@ -51,6 +51,8 @@ class Card():
         self.name = name
         self.active = active
         self.conditions = conditions
+        self.abilities = []
+        self.qualities = []
         self.preferred = preferred
         self.attack = attack
         self.defence = defence
